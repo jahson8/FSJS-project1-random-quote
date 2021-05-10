@@ -49,12 +49,35 @@ const quotes = [
 ];
 
 /***
- * `getRandomQuote` function
+ * Generates a random index for an array and returns an object 'Quote'
+ * @param array
+ * @returns object
  ***/
+
+const getRandomQuote = (arr) => {
+  const index = Math.floor(Math.random() * arr.length);
+  return arr[index];
+};
 
 /***
  * `printQuote` function
  ***/
+
+const printQuote = () => {
+  let quote = getRandomQuote(quotes);
+  console.log(quote);
+  let msg = `<p class="quote">${quote.quote}</p>
+              <p class="source">${quote.source}`;
+  if (quote.citation) {
+    msg += `<span class="citation"> ${quote.citation} </span>`;
+  }
+  if (quote.year) {
+    msg += `<span class="year"> ${quote.year}  </span>`;
+  }
+  msg += `</p> <p class="tags">${quote.tags}</p>`;
+  console.log(msg);
+  document.getElementById("quote-box").innerHTML = msg;
+};
 
 /***
  * click event listener for the print quote button
