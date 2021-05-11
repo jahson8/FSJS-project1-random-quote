@@ -46,37 +46,94 @@ const quotes = [
     year: "1998",
     tags: "Success",
   },
+
+  {
+    quote:
+      "I don’t believe in astrology; I’m a Sagittarius and we’re skeptical.",
+    source: "Arthur C. Clarke",
+    tags: "Humor",
+  },
+  {
+    quote: "My opinions may have changed, but not the fact that I’m right.",
+    source: "Ashleigh Brilliant",
+    tags: "Humor",
+  },
+  {
+    quote:
+      "Inside me there’s a thin person struggling to get out, but I can usually sedate him with four or five cupcakes.",
+    source: "Bob Thaves",
+    tags: "Humor",
+  },
+  {
+    quote: "Use the Surrender Tactic: transform weakness into power.",
+    source: "Robert Greene",
+    citation: "The 48 Laws of Power",
+    year: "1998",
+    tags: "Success",
+  },
+  {
+    quote:
+      "You are the master of your destiny. You can influence, direct and control your own environment. You can make your life what you want it to be.",
+    source: "Napoleon Hill",
+    citation: "Think and Grow Rich",
+    year: "1937",
+    tags: "Self Help, Success",
+  },
 ];
+
+/***
+ * Get a random number
+ * @param number
+ * @returns - number
+ ***/
+
+const randomNum = (num) => {
+  return Math.floor(Math.random() * num);
+};
 
 /***
  * Generates a random index for an array and returns an object 'Quote'
  * @param array
  * @returns object
  ***/
-
 const getRandomQuote = (arr) => {
-  const index = Math.floor(Math.random() * arr.length);
+  const index = randomNum(arr.length);
   return arr[index];
 };
 
 /***
- * `printQuote` function
+ * Generates a random RGB value
+ *
+ *
+ ***/
+const generateRgb = () => {
+  return `rgb(${randomNum(256)}, ${randomNum(256)}, ${randomNum(256)})`;
+};
+
+/***
+ * Generates and displays HTML to page and changes background-color
  ***/
 
 const printQuote = () => {
+  // Variables
   let quote = getRandomQuote(quotes);
-  console.log(quote);
   let msg = `<p class="quote">${quote.quote}</p>
               <p class="source">${quote.source}`;
+  let body = document.querySelector("body");
+  let color = generateRgb();
   if (quote.citation) {
     msg += `<span class="citation"> ${quote.citation} </span>`;
   }
   if (quote.year) {
     msg += `<span class="year"> ${quote.year}  </span>`;
   }
-  msg += `</p> <p class="tags">${quote.tags}</p>`;
-  console.log(msg);
+  msg += `</p> <p ><span class="tags">${quote.tags}</span></p>`;
+
+  // Adds HTML To quote-box
   document.getElementById("quote-box").innerHTML = msg;
+
+  // Changes body's background-color
+  body.style.backgroundColor = color;
 };
 
 /***
