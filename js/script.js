@@ -21,7 +21,7 @@ const quotes = [
   {
     quote: "I don't wanna wait in vain for your love",
     source: "Bob Marley",
-    citation: "Legend",
+    album: "Legend",
     date: "1984",
     tags: "Music",
   },
@@ -127,6 +127,11 @@ const printQuote = () => {
   if (quote.year) {
     msg += `<span class="year"> ${quote.year}  </span>`;
   }
+
+  if (quote.album) {
+    msg += `<span class="citation"> ${quote.album}  </span>`;
+  }
+
   msg += `</p> <p ><span class="tags">${quote.tags}</span></p>`;
 
   // Adds HTML To quote-box
@@ -135,6 +140,11 @@ const printQuote = () => {
   // Changes body's background-color
   body.style.backgroundColor = color;
 };
+
+//changes quotes and background color every six seconds
+window.setInterval(() => {
+  printQuote();
+}, 10000);
 
 /***
  * click event listener for the print quote button
